@@ -1,0 +1,55 @@
+<div class="container mt-5">
+    <div class="row g-3">
+      <div class="col-md-4" *ngFor="let store of stores">
+        <div class="card product-card h-100" >
+          <img 
+          (click)="openModal(store)"
+            [src]="store.image" 
+            class="card-img-top product-image" 
+            [alt]="store.title"
+          >
+          <div class="card-body product-details">
+            <h5 class="card-title product-title">{{store.title}}</h5>
+            <p class="text-muted mb-2 product-category">
+              <i class="fas fa-tags"></i> {{store.category}}
+            </p>
+            <p class="card-text product-description">
+              {{store.description.split(' ').slice(0, 10).join(' ')}}
+            </p>
+            <h4 class="text-primary mb-3 product-price">
+               price: ${{store.price }}
+            </h4>
+            <div class="d-flex justify-content-between align-items-center product-rating">
+              <div>
+                <span class="text-warning rating-value">
+                  <i class="fas fa-star"></i> {{store.rating.rate}}
+                </span>
+              </div>
+              <div class="text-muted rating-count">
+                <i class="fas fa-users"></i> <span>{{store.rating.count}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  <div class="custom-modal mx-auto " *ngIf="selectedStore">
+    <div class="custom-modal-content d-flex ">
+        <div class="me-3">
+            <i class="fa-regular fa-circle-xmark close-button" (click)="closeModal()"></i>
+            <img [src]="selectedStore.image" alt="Full Image" class="img-fluid h-100">
+        </div>
+      
+      <div class="modal-details  ">
+        <h2>{{selectedStore.title}}</h2>
+        <p>{{selectedStore.description}}</p>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
